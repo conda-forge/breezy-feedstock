@@ -1,4 +1,4 @@
-{% set version = "3.3.10" %}
+{% set version = "3.3.17" %}
 
 package:
   name: breezy
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/b/breezy/breezy-{{ version }}.tar.gz
-  sha256: 8e61aeb4800048d6f8fe43f701e510b571255387e64a999624caf46227b58cf7
+  sha256: 5d2f45cd22e908b96833a4d424bcffc50593c2630b942ebc590280eb1f83410a
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
