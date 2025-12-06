@@ -1,23 +1,26 @@
-{% set version = "3.3.17" %}
+schema_version: 1
+
+context:
+  version: 3.3.17
 
 package:
   name: breezy
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/b/breezy/breezy-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/b/breezy/breezy-${{ version }}.tar.gz
   sha256: 5d2f45cd22e908b96833a4d424bcffc50593c2630b942ebc590280eb1f83410a
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 1
-  skip: true  # [win]
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('rust') }}
-    - {{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
   host:
     - python
     - setuptools >=60
@@ -36,21 +39,23 @@ requirements:
     - urllib3 >=1.24.1
     - pyyaml
 
-test:
-  imports:
-    - breezy
-  commands:
-    - brz --help
-    - pip check
-  requires:
-    - pip
-    - python
+tests:
+  - python:
+      imports:
+        - breezy
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - brz --help
+      - pip check
 
 about:
-  home: https://github.com/breezy-team/breezy
   summary: Friendly distributed version control system
   license: GPL-2.0-or-later
   license_file: COPYING.txt
+  homepage: https://github.com/breezy-team/breezy
 
 extra:
   recipe-maintainers:
