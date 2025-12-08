@@ -23,6 +23,7 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ compiler('rust') }}
     - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
   host:
     - python
     - setuptools >=60
