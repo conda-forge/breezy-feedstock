@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: 3.3.17
+  version: "3.3.25"
 
 package:
   name: breezy
@@ -9,10 +9,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/b/breezy/breezy-${{ version }}.tar.gz
-  sha256: 5d2f45cd22e908b96833a4d424bcffc50593c2630b942ebc590280eb1f83410a
+  sha256: 01932bc4f7e4c15f6b57b208224e78490d3f4af777869aaeb877a965637c8095
 
 build:
-  number: 1
+  number: 0
   skip: win
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
